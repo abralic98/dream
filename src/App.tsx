@@ -12,14 +12,14 @@ const App = () => {
     <Routes>
       <Route path="/auth/login" element={<LoginPage />} />
       <Route path="/auth/register" element={<RegisterPage />} />
+      <Route path="*" element={<UnknownRoute />} />
 
       <Route path="/app/*" element={<ProtectedRoute />}>
         <Route path="dashboard" element={<DashboardPage />} />
         <Route path="profile" element={<ProfilePage />} />
         <Route path="game/:gameId" element={<GamePage />} />
+        <Route path="*" element={<UnknownRoute />} />
       </Route>
-
-      <Route path="*" element={<UnknownRoute />} />
     </Routes>
   );
 };

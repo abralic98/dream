@@ -8,11 +8,12 @@ interface AxiosErr {
 export const handleAxiosError = (error: unknown) => {
   const err = error as AxiosErr;
   console.log(err);
+  try {
+    const message =
+      err?.response?.data.errors[0]?.message ||
+      err?.message ||
+      "An unknown error occurred";
 
-  const message =
-    err?.response?.data.errors[0]?.message ||
-    err.message ||
-    "An unknown error occurred";
-
-  toast.error(message);
+    toast.error(message);
+  } catch {}
 };

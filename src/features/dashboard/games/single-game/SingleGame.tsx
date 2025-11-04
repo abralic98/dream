@@ -23,7 +23,7 @@ export const SingleGame = () => {
 
   if (error) {
     handleAxiosError(error);
-    return <div>error</div>;
+    return <div className="text-red-500 text-xl font-bold">error</div>;
   }
 
   if (isLoading)

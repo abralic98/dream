@@ -7,11 +7,3 @@ export const CenterScreen = ({ children }: PropsWithChildren) => {
     </div>
   );
 };
-
-export const Center = ({ children }: PropsWithChildren) => {
-  return (
-    <div className="flex items-center justify-center w-full h-full">
-      {children}
-    </div>
-  );
-};
