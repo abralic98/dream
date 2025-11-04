@@ -2,7 +2,7 @@ import { H4 } from "../Typography";
 
 interface Props {
   info: string;
-  answer: string | null;
+  answer?: string | null;
 }
 export const InfoAnswer = ({ info, answer }: Props) => {
   return (

@@ -13,15 +13,24 @@ export const GameList = () => {
     name: "status",
   });
 
+  const after = useWatch({
+    control,
+    name: "after",
+  });
+  const before = useWatch({
+    control,
+    name: "before",
+  });
+
   const query = usePagination<Game>({
-    queryKey: [queryKeys.games, status],
+    queryKey: [queryKeys.games, status, after, before],
     url: "/games/",
     pageSize: 10,
-    // gcTime: 0,
+    gcTime: 0,
     params: {
       status: status === "All" ? undefined : status,
-      // after: "2025-11-05T23:59:59Z",
-      // before: "2025-11-05T23:59:59Z",
+      after: after,
+      before: before,
     },
   });
 

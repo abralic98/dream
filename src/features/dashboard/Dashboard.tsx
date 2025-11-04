@@ -4,7 +4,6 @@ import { Filters } from "./games/Filters";
 
 export const Dashboard = () => {
   const form = useForm();
-  console.log(form.watch("status"), "uplifted status");
   return (
     <div>
       <FormProvider {...form}>
