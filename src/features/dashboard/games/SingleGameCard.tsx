@@ -1,5 +1,6 @@
 import { Game, StatusEnum } from "../../../api";
 import { InfoAnswer } from "../../../components/custom/InfoAnswer";
+import { formatDate } from "../../../helpers/date";
 import { JoinExistingGame } from "./JoinExistingGame";
 
 export const SingleGameCard = ({ game }: { game: Game }) => {
@@ -9,7 +10,7 @@ export const SingleGameCard = ({ game }: { game: Game }) => {
         <InfoAnswer info={"# Number "} answer={String(game.id)} />
         <InfoAnswer info={"Status"} answer={game.status} />
         <InfoAnswer info={"Winner"} answer={game?.winner?.username} />
-        <InfoAnswer info={"Date created"} answer={game.created} />
+        <InfoAnswer info={"Date created"} answer={formatDate(game.created)} />
         <InfoAnswer info={"First player"} answer={game.first_player.username} />
         <InfoAnswer
           info={"Second player"}

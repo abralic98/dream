@@ -1,6 +1,7 @@
 import { Game } from "../../../../api";
 import { H3 } from "../../../../components/Typography";
 import { InfoAnswer } from "../../../../components/custom/InfoAnswer";
+import { formatDate } from "../../../../helpers/date";
 
 export const GameInfo = ({ game }: { game: Game }) => {
   return (
@@ -11,7 +12,7 @@ export const GameInfo = ({ game }: { game: Game }) => {
         info={"Winner"}
         answer={game?.winner?.username ?? "Not decided"}
       />
-      <InfoAnswer info={"Date created"} answer={game?.created} />
+      <InfoAnswer info={"Date created"} answer={formatDate(game?.created)} />
       <InfoAnswer info={"First player"} answer={game?.first_player.username} />
       <InfoAnswer
         info={"Second player"}
