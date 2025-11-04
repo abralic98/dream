@@ -3,6 +3,7 @@ import { SingleRoute } from "../../../components/sidebar/SingleRoute";
 import { handleAxiosError } from "../../../helpers/handleAxiosError";
 import { client } from "../../../lib/axios/client";
 import { useAuthStore } from "../store";
+import { queryClient } from "../../../lib/react-query/queryClient";
 
 export const Logout = () => {
   const { clearAuth } = useAuthStore();
@@ -14,6 +15,7 @@ export const Logout = () => {
     },
     onSuccess: () => {
       clearAuth();
+      queryClient.clear();
     },
     onError: (error) => {
       handleAxiosError(error);

@@ -29,13 +29,11 @@ export const Login = () => {
       return res.data;
     },
     onSuccess: (res: LoginOutput) => {
-      console.log(res, "res raspali");
       Cookies.set(CookieKeys.TOKEN, res.token);
       const stringifiedUser = JSON.stringify({
         username: res.username,
         id: res.id,
       });
-      console.log(stringifiedUser, "stringificirani");
       Cookies.set(CookieKeys.USER, stringifiedUser); // inace ne spremam usera u cookie ali posto nema getMe spremam ovako da ne izbacuje na svakom refreshu
       setAuth(res.token, { username: res.username, id: res.id });
       navigate(routes.dashboard.route);

@@ -29,7 +29,7 @@ export const JoinExistingGame = ({ id }: { id: number }) => {
   });
 
   return (
-    <Button onClick={() => joinGameMutation.mutateAsync()}>
+    <Button type="button" onClick={() => joinGameMutation.mutateAsync()}>
       <H4>Join </H4>
     </Button>
   );

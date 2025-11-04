@@ -1,7 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { PlusCircleIcon } from "lucide-react";
 import { client } from "../../../lib/axios/client";
-import { Game } from "../../../api";
 import { routes } from "../../../lib/routes";
 import { handleAxiosError } from "../../../helpers/handleAxiosError";
 import { useNavigate } from "react-router-dom";

@@ -9,19 +9,19 @@ import { useAuthStore } from "./store";
 import { handleAxiosError } from "../../helpers/handleAxiosError";
 import { routes } from "../../lib/routes";
 import { AppHeader } from "../../pages/app/AppHeader";
-import { useEffect } from "react";
 import { queryKeys } from "../../lib/react-query/queryKeys";
 
 export const ProtectedRoute = () => {
-  const { user: storeUser, setAuth } = useAuthStore();
+  const { user: storeUser } = useAuthStore();
 
   const cookieUser = Cookies.get(CookieKeys.USER);
   const parsedUser: ReducedUser | null = cookieUser
     ? JSON.parse(cookieUser)
     : null;
+
   const token = Cookies.get(CookieKeys.TOKEN);
 
-  const { data, error } = useQuery<User>({
+  const { error } = useQuery<User>({
     queryKey: [queryKeys.me],
     queryFn: async () => {
       const res = await client.get(`/users/${parsedUser?.id}`);
@@ -29,17 +29,6 @@ export const ProtectedRoute = () => {
     },
     enabled: Boolean(parsedUser?.id) || !storeUser,
   });
-
-  useEffect(() => {
-    const stringifiedUser = JSON.stringify({
-      username: data?.username,
-      id: data?.id,
-    });
-    Cookies.set(CookieKeys.USER, stringifiedUser);
-    if (token && data?.username && data.id) {
-      setAuth(token, { username: data?.username, id: data?.id });
-    }
-  }, [data]);
 
   if (!parsedUser?.id || !token) {
     return <Navigate to={routes.login.route} replace />;

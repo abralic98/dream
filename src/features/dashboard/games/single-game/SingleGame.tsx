@@ -17,7 +17,7 @@ export const SingleGame = () => {
       const res = await client.get(`/games/${gameId}`);
       return res.data;
     },
-    refetchInterval: 5000,
+    refetchInterval: 3000,
     enabled: Boolean(gameId),
   });
 

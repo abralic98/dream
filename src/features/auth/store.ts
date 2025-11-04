@@ -22,6 +22,7 @@ export const useAuthStore = create<AuthStore>()(
       },
       clearAuth: () => {
         Cookies.remove(CookieKeys.TOKEN);
+        Cookies.remove(CookieKeys.USER);
         set({ token: null, user: null }, false, "clearAuth");
       },
     }),

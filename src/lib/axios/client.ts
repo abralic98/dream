@@ -2,7 +2,7 @@ import axios, { type AxiosInstance, type AxiosRequestHeaders } from "axios";
 import Cookies from "js-cookie";
 import { CookieKeys } from "../../helpers/cookies";
 
-export const apiUrl = "https://ttt.aboutdream.io";
+export const apiUrl = "https://ttt.aboutdream.io"; // ide inace env.local i env.production ali da ne kompliciram
 
 const getToken = (): string | undefined => {
   return Cookies.get(CookieKeys.TOKEN);
@@ -30,6 +30,8 @@ client.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
+      Cookies.remove(CookieKeys.TOKEN);
+      Cookies.remove(CookieKeys.USER);
       window.location.href = "/auth/login";
     }
     return Promise.reject(error);

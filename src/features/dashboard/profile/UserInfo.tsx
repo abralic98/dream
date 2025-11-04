@@ -1,10 +1,10 @@
-import React from "react";
 import { useAuthStore } from "../../auth/store";
 import { InfoAnswer } from "../../../components/custom/InfoAnswer";
 import { useQuery } from "@tanstack/react-query";
 import { User } from "../../../api";
 import { queryKeys } from "../../../lib/react-query/queryKeys";
 import { client } from "../../../lib/axios/client";
+import { handleAxiosError } from "../../../helpers/handleAxiosError";
 
 export const UserInfo = () => {
   const { user: reducedUser } = useAuthStore();
@@ -17,6 +17,11 @@ export const UserInfo = () => {
     },
     enabled: Boolean(reducedUser?.id),
   });
+
+  if (error) {
+    handleAxiosError(error);
+  }
+
   return (
     <div className="w-full h-full flex  p-16 ">
       <div className="w-[500px] h-[500px] bg-neutral-800 rounded-3xl p-4">
